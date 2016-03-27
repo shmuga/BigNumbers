@@ -1,8 +1,14 @@
-cmake_minimum_required(VERSION 3.4)
-project(BigNumbers)
+cmake_minimum_required(VERSION 2.8)
+project(Calendar)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+add_definitions(-std=c++11)
+
+set(SOURCE_FILES main.cpp)
+add_executable(run ${SOURCE_FILES})
+
+include_directories(src)
 
 add_subdirectory(src)
-add_subdirectory(lib)
 add_subdirectory(tests)
+
+target_link_libraries(run src)
