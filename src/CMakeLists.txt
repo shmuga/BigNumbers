@@ -1,6 +1,15 @@
-set(SOURCE_FILES
-        BigNumber.cpp
-        BigNumber.h)
+cmake_minimum_required(VERSION 2.8)
 
-add_library(BigNumber ${SOURCE_FILES})
-add_executable(BigNumbers main.cpp)
+project(src)
+
+add_definitions(-std=c++11)
+
+set(HEADER_FILES
+    BigNumber.h
+    )
+
+set(SOURCE_FILES
+    BigNumber.cpp
+    )
+
+add_library(src STATIC ${SOURCE_FILES} ${HEADER_FILES})
