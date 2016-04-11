@@ -1,22 +1,27 @@
 #include "BigNumber.h"
 #include <string>
+#include <cstdlib>
+#include <cstdio>
 
 BigNumber::BigNumber(string numString) {
-    this->sign = 0;
-    if (numString[0] == '-') {
-        this->sign = 1;
-    }
-    this->num = new int[numString.length() - this->sign];
-    this->length = numString.length() - this->sign;
-    for (int i = 0; i < (int) (numString.length() - this->sign); i++) {
-        this->num[i] = (int)(numString[i + this->sign] - '0');
+    for (int i=(int)numString.length(); i>0; i-=9) {
+        if (i < 9) {
+            this->num.push_back(atoi(numString.substr(0, i).c_str()));
+        }
+        else {
+            this->num.push_back(atoi(numString.substr(i - 9, 9).c_str()));
+        }
     }
 }
 
 string BigNumber::print() {
-    string ret = "";
-    for (int i = 0; i < this->length; i++) {
-        ret += std::to_string(this->num[i]);
+    string res;
+    char* tmp = new char[9];
+    sprintf (tmp, "%d", this->num.empty() ? 0 : this->num.back());
+    for (int i=(int)this->num.size()-2; i>=0; --i) {
+        char* tmp = new char[9];
+        sprintf (tmp, "%09d", this->num[i]);
+        res += tmp;
     }
-    return (sign) ? '-' + ret : ret;
+    return tmp + res;
 }

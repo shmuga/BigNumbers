@@ -1,14 +1,15 @@
 #ifndef BIGNUMBER_H
 #define BIGNUMBER_H
 
+#include <vector>
 #include <string>
     using namespace std;
 
 class BigNumber {
 public:
-    int *num;
-    int length;
+    vector<int> num;
     int sign;
+    int base;
 
 public:
     BigNumber(string);
