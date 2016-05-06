@@ -7,8 +7,8 @@
 #include "BigNumber/Functions.h"
 
 TEST(FunctionsAddition, POSITIVE) {
-    BigNumber a("2");
-    BigNumber b("2");
+    BigNumber a("0");
+    BigNumber b("0");
     BigNumber c = addition(a, b);
     EXPECT_EQ(c.print(), "444");
 }
