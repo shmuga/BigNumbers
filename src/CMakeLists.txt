@@ -6,10 +6,10 @@ add_definitions(-std=c++11)
 
 set(HEADER_FILES
         BigNumber/BigNumber.h
-    )
+        BigNumber/Functions.h)
 
 set(SOURCE_FILES
         BigNumber/BigNumber.cpp
-    )
+        BigNumber/Functions.cpp)
 
 add_library(src STATIC ${SOURCE_FILES} ${HEADER_FILES})

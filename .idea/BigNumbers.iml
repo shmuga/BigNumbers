@@ -2,17 +2,20 @@
 <module type="CPP_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src/BigNumber.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/BigNumber.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/gtest-1.7.0/src/gtest_main.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/gtest-1.7.0/src/gtest-all.cc" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/gtest-1.7.0/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/lib/gtest-1.7.0/cmake/internal_utils.cmake" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/BigNumber/BigNumber.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/BigNumber/Functions.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/BigNumber/BigNumber.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/BigNumber/Functions.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/lib/gtest-1.7.0/src/gtest_main.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/lib/gtest-1.7.0/src/gtest-all.cc" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/lib/gtest-1.7.0/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/lib/gtest-1.7.0/cmake/internal_utils.cmake" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/tests/CMakeLists.txt" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/tests/BigNumber.spec.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/BigNumber/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/BigNumber/Functions.spec.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/BigNumber/BigNumber.spec.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
