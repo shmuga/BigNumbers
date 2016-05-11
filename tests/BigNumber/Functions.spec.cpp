@@ -36,6 +36,7 @@ TEST(FunctionsAddition, POSITIVE) {
 }
 
 TEST(FunctionsAddition, NEGATIVE) {
-    
+
 }
+
 

@@ -7,35 +7,117 @@ BigNumber addition(BigNumber a, BigNumber b) {
 
     int aLength = (int)a.num.size();
     int bLength = (int)b.num.size();
-    int diff = aLength - bLength;
-    int length = 0;
+    int additionalPoint = 0;
 
-    if (diff > 0) {
-        length = aLength;
-        for (int i = 0; i < diff; i++) {
-            b.num.push_back(0);
+    for (int i = 0; i < bLength; i++) {
+        a.num[i] += b.num[i] + additionalPoint;
+        if (a.num[i] >= 1000000000) {
+            a.num[i] -= 1000000000;
+            additionalPoint = 1;
+        } else {
+            additionalPoint = 0;
+        }
+    }
+
+    if (additionalPoint == 1) {
+        if (aLength == bLength) {
+            a.num.push_back(additionalPoint);
+        } else {
+            a.num[bLength + 1] += 1;
+        }
+    }
+
+    return a;
+
+}
+
+BigNumber sum(BigNumber a, BigNumber b) {
+
+    int aSign = a.sign;
+    int bSign = b.sign;
+
+    a.sign = 1;
+    b.sign = 1;
+
+    if ((bool)(aSign ^ bSign)) { // different signs, using subtraction
+        if (a > b) {
+            a = subtraction(a, b);
+            a.sign = aSign;
+        } else {
+            a = subtraction(b, a);
+            a.sign = bSign;
         }
     } else {
-        length = bLength;
-        diff *= -1;
-        for (int i = 0; i < diff; i++) {
-            a.num.push_back(0);
+        if (a.num.size() >= b.num.size()) {
+            a = addition(a, b);
+        } else {
+            a = addition(b, a);
+        }
+        a.sign = aSign;
+    }
+
+    return a;
+
+}
+
+BigNumber subtraction(BigNumber a, BigNumber b) {
+
+    int subtractionPoint = 0;
+    int aLength = (int)a.num.size();
+    int bLength = (int)b.num.size();
+
+    for (int i = 0; i < bLength; i++) {
+        a.num[i] -= b.num[i] + subtractionPoint;
+        if (a.num[i] < 0) {
+            a.num[i] += 1000000000;
+            subtractionPoint = 1;
+        } else {
+            subtractionPoint = 0;
         }
     }
 
-    BigNumber result("");
-
-    int sum = 0;
-    int additionalPoint = 0;
-    for (int i = 0; i < length; i++) {
-        sum = a.num[i] + b.num[i] + additionalPoint;
-        result.num.push_back(sum % 1000000000);
-        additionalPoint = sum / 1000000000;
-    }
-    if (additionalPoint > 0) {
-        result.num.push_back(1);
+    if (subtractionPoint && aLength > bLength) {
+        while (a.num[++bLength] <= 0 && aLength > bLength) {}
+        a.num[bLength] -= 1;
     }
 
-    return result;
+    while (a.num.back() == 0 && --aLength > 0) {
+        a.num.pop_back();
+    }
+
+    return a;
+
+}
+
+BigNumber sub(BigNumber a, BigNumber b) {
+
+    int aSign = a.sign;
+    int bSign = b.sign;
+
+    a.sign = 1;
+    b.sign = 1;
+
+    if ((bool)(aSign ^ bSign)) { // different signs, using addition
+
+        if (a.num.size() >= b.num.size()) {
+            a = addition(a, b);
+        } else {
+            a = addition(b, a);
+        }
+        a.sign = aSign;
+
+    } else {
+
+        if (a > b) {
+            a = subtraction(a, b);
+            a.sign = aSign;
+        } else {
+            a = subtraction(b, a);
+            a.sign = (int)!aSign;
+        }
+
+    }
+
+    return a;
 
 }
