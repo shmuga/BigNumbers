@@ -32,7 +32,7 @@ TEST(FunctionsAddition, POSITIVE) {
     mpz_get_str(bSt, 10, b);
     mpz_get_str(resSt, 10, res);
     string aStr(aSt), bStr(bSt), resStr(resSt);
-    EXPECT_EQ(resStr, sum(BigNumber(aStr), BigNumber(bStr)));
+    EXPECT_EQ(resStr, sum(BigNumber(aStr), BigNumber(bStr)).print());
 }
 
 TEST(FunctionsAddition, NEGATIVE) {
