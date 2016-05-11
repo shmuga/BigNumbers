@@ -10,5 +10,8 @@
 using namespace std;
 
 BigNumber addition(BigNumber a, BigNumber b);
+BigNumber sum(BigNumber a, BigNumber b);
+BigNumber subtraction(BigNumber a, BigNumber b);
+BigNumber sub(BigNumber a, BigNumber b);
 
 #endif //BIGNUMBER_FUNCTIONS_H
