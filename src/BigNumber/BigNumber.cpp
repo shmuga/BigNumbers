@@ -37,6 +37,7 @@ void BigNumber::setNum(string numString) {
     this->sign = 1;
     if (numString[0] == '-') {
         this->sign = -1;
+        numString.erase(0, 1);
     }
     for (long i = (int)numString.length(); i>0; i-=9) {
         if (i < 9) {
