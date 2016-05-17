@@ -13,7 +13,7 @@ find_path(GMP_INCLUDES
         ${INCLUDE_INSTALL_DIR}
         )
 
-#message("GMP_INCLUDES ${GMP_INCLUDES}")
+message("GMP_INCLUDES ${GMP_INCLUDES}")
 
 find_library(GMP_LIBRARIES gmp PATHS $ENV{GMPDIR} ${GMP_ROOT}/lib ${LIB_INSTALL_DIR})
 
