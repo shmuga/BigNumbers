@@ -14,4 +14,8 @@ BigNumber sum(BigNumber a, BigNumber b);
 BigNumber subtraction(BigNumber a, BigNumber b);
 BigNumber sub(BigNumber a, BigNumber b);
 
+BigNumber multiplication(BigNumber X, BigNumber Y);
+BigNumber multiplication(int a, int b);
+BigNumber mult(BigNumber X, BigNumber Y);
+
 #endif //BIGNUMBER_FUNCTIONS_H

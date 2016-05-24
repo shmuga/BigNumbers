@@ -9,6 +9,7 @@ BigNumber::BigNumber(string numString) {
 
 BigNumber::BigNumber() {
     this->num.push_back(0);
+    this->sign = 1;
 }
 
 BigNumber::BigNumber(int number) {
