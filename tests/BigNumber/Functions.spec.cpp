@@ -47,7 +47,7 @@ void gen_big_number(mpz_t num, int digits = 256) {
 TEST(FunctionsAddition, POSITIVE) {
     mpz_t a, b, res;
     mpz_init(res);
-    int length = 512;
+    int length = 500000;
     gen_big_number(a, length);
     gen_big_number(b, length);
     mpz_mul(res, a, b);

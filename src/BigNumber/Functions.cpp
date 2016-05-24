@@ -19,12 +19,12 @@ BigNumber addition(BigNumber a, BigNumber b) {
         }
     }
 
-    if (additionalPoint == 1) {
-        if (aLength == bLength) {
+    if (aLength == bLength) {
+        if (additionalPoint == 1) {
             a.num.push_back(additionalPoint);
-        } else {
-            a.num[bLength] += 1;
         }
+    } else {
+        a.num[bLength] += additionalPoint;
     }
 
     return a;
@@ -129,21 +129,30 @@ BigNumber multiplication(BigNumber X, BigNumber Y) {
 //    Y = c * 10 ^ (9 * T)  + d
 //    REZ = a * c * 10 ^ 2 * (9 * T) + ((a + b) * (c + d) - a * c - b * d) * 10 ^ (9 * T) + b * d
 
-    int aLength = (int)X.num.size();
-    if (aLength <= 1) { // multiplication of two integers
+    int xLength = (int)X.num.size();
+    if (xLength <= 1) { // multiplication of two integers
         return multiplication(X.num[0], Y.num[0]);
     }
+    int half = xLength / 2;
 
 //    ac = a * c
+    vector<int>::const_iterator first;
+    vector<int>::const_iterator last;
+    first = X.num.begin() + half;
+    last = X.num.end();
+    vector<int> aNum(first, last);
     BigNumber a;
-    a.num[0] = X.num[aLength - 1];
+    a.num = aNum;
+    first = Y.num.begin() + half;
+    last = Y.num.end();
+    vector<int> cNum(first, last);
     BigNumber c;
-    c.num[0] = Y.num[aLength - 1];
+    c.num = cNum;
     BigNumber ac = multiplication(a, c);
 
 //    bd = b * d
-    X.num.pop_back(); // b
-    Y.num.pop_back(); // d
+    X.num.erase(X.num.begin() + half, X.num.end()); // b
+    Y.num.erase(Y.num.begin() + half, Y.num.end()); // d
     BigNumber bd = multiplication(X, Y);
 
 //    xy = x * y = (a + b) * (c + d)
@@ -163,7 +172,7 @@ BigNumber multiplication(BigNumber X, BigNumber Y) {
     BigNumber xy = multiplication(x, y);
 
 //    T
-    unsigned long T = (unsigned long)aLength - 1;
+    unsigned long T = (unsigned long)half;
 
 //    z = xy - ac - bd
     BigNumber z = sub(xy, ac);
