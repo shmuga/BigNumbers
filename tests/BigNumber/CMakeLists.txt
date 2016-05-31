@@ -1,7 +1,7 @@
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(BigNumberTests
-        BigNumber.spec.cpp Functions.spec.cpp)
+        BigNumber.spec.cpp Functions.spec.cpp Gost.spec.cpp)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 find_package(GMP REQUIRED)
