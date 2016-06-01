@@ -6,7 +6,7 @@ using namespace std;
 TEST(GostTest, POSITIVE) {
 
     string t;
-    t = getPrime(1024, 1024, 1024);
+    t = getPrime(24265, 29505, 1024);
     cout << "\n\n" << t << "\n";
 
     EXPECT_EQ(true, true);
