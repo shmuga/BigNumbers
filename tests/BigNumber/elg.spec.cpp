@@ -19,13 +19,6 @@ TEST(ELGTest, ENCRYPT_DECRYPT) {
     pair<string, string> C = ELGcrypt(M, p.first, g, y, x);
     D = ELGdecrypt(C.second, C.first, x, p.first);
 
-//    cout << p.first << endl;
-//    cout << p.second << endl;
-//    cout << x << endl;
-//    cout << y << endl;
-//    cout << g << endl;
-//    cout << D << endl;
-
     EXPECT_EQ(M, D);
 }
 
@@ -41,8 +34,10 @@ TEST(ELGTest, SUBSCRIBE_CHECK) {
     string y = generateY(p.first, g, x);
 
     pair<string, string> S = ELGsubscribe(M, p, g, x);
+
     string r = S.first;
     string s = S.second;
 
     EXPECT_TRUE(ELGcheck(M, p.first, g, y, r, s));
 }
+

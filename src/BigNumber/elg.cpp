@@ -127,8 +127,9 @@ int ELGdecrypt(string bS, string aS, string xS, string pS) {
 }
 
 string generateK(string pS, string qS) {
-    mpz_t p, q, r, res;
+    mpz_t p, q, r, res, tmp;
     mpz_init(res);
+    mpz_init(tmp);
     mpz_init(p);
     mpz_init(q);
     mpz_init(r);
@@ -141,10 +142,8 @@ string generateK(string pS, string qS) {
     while(true) {
         string num = generateX(pS);
         mpz_set_str(res, num.c_str(), 10);
-        mpz_sub_ui(res, res, 10);
-        if (mpz_cmp(res, q) == 0) continue;
-        if (mpz_cmp(res, r) == 0) continue;
-        break;
+        mpz_gcd(tmp, res, p);
+        if (mpz_cmp_ui(tmp, 1) == 0) break;
     }
 
     return mpz_get_str(NULL, 10, res);
