@@ -2,6 +2,7 @@
 // Created by axel on 5/7/16.
 //
 #include "Functions.h"
+#include "iostream"
 
 BigNumber addition(BigNumber a, BigNumber b) {
 
@@ -213,5 +214,35 @@ BigNumber mult(BigNumber X, BigNumber Y) {
     X = multiplication(X, Y);
     X.sign = ((bool)(X.sign ^ Y.sign)) ? -1 : 1;
     return X;
+
+}
+
+string numFromText(string text) {
+
+    string result, tmp;
+
+    for (int i = 0; i < text.length(); i++) {
+        tmp = to_string(text[i] + 1000);
+        result += tmp.substr(1, tmp.length());
+    }
+
+    return "1" + result;
+
+}
+
+string textFromNum(string num) {
+
+    num = num.substr(1, num.length());
+
+    string result;
+    char tmp;
+
+    for (int i = 0; i < num.length(); i = i + 3) {
+        tmp = stoi(num.substr(i, 3)) % 255;
+        result += tmp;
+    }
+
+    return result;
+
 
 }

@@ -68,3 +68,19 @@ TEST(FunctionsMultiplication, POSITIVE) {
 
     EXPECT_EQ(resStr, sumSt);
 }
+
+TEST(FunctionsNumFromText, POSITIVE) {
+
+    string test = numFromText("A");
+
+    EXPECT_EQ(test, "1065");
+
+}
+
+TEST(FunctionsTextFromNum, POSITIVE) {
+
+    string test = textFromNum("1065101111099110115111105121117104119115102108106");
+
+    EXPECT_EQ(test, "Aeocnsoiyuhwsflj");
+
+}

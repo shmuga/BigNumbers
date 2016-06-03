@@ -18,4 +18,7 @@ BigNumber multiplication(BigNumber X, BigNumber Y);
 BigNumber multiplication(int a, int b);
 BigNumber mult(BigNumber X, BigNumber Y);
 
+string numFromText(string text);
+string textFromNum(string num);
+
 #endif //BIGNUMBER_FUNCTIONS_H
