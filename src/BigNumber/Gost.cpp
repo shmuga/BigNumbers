@@ -2,9 +2,9 @@
 #include "Gost.h"
 
 
-string getPrime(int x0, int c, int t0 = 1024) {
+pair<string, string> getPrime(int x0, int c, int t0 = 1024) {
 
-    cout << "\n\n";
+//    cout << "\n\n";
 
     vector<int> y;
 //    #1
@@ -122,13 +122,14 @@ string getPrime(int x0, int c, int t0 = 1024) {
 
         }
 
-        cout << p[s - m].get_str(10) << "\n";
+//        cout << p[s - m].get_str(10) << "\n";
 
         m -= 1;
 
     }
 
-    string rez = p[s - m - 1].get_str(10);
-    return rez;
+    string rez1 = p[s - m - 1].get_str(10);
+    string rez2 = p[s - m - 2].get_str(10);
+    return make_pair(rez1, rez2);
 
 }
