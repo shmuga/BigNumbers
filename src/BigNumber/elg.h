@@ -15,11 +15,11 @@ string generateX(string p);
 string generateK(string p, string q);
 string generateY(string p, string g, string x);
 
-pair<string, string> ELGcrypt(int M, string p, string g, string y, string x);
-int ELGdecrypt(string b, string a, string x, string p);
+pair<string, string> ELGcrypt(string M, string p, string g, string y, string x);
+string ELGdecrypt(string b, string a, string x, string p);
 
 
-pair<string, string> ELGsubscribe(int M, pair<string, string> p, string g, string x);
-bool ELGcheck(int M, string p, string g, string y, string r, string s);
+pair<string, string> ELGsubscribe(string M, pair<string, string> p, string g, string x);
+bool ELGcheck(string M, string p, string g, string y, string r, string s);
 
 #endif

@@ -5,6 +5,8 @@
 #include "elg.h"
 #include "Gost.h"
 #include "BBS.h"
+#include "BigNumber/Functions.h"
+#include "BigNumber/md5.h"
 
 pair<string, string> generateP() {
     srand (time(NULL));
@@ -79,9 +81,11 @@ string generateY(string p, string g, string x) {
 }
 
 
-pair<string, string> ELGcrypt(int M, string pS, string gS, string yS, string xS) {
+pair<string, string> ELGcrypt(string Ms, string pS, string gS, string yS, string xS) {
     mpz_t a, b;
-    mpz_t p, g, y, x, k;
+    mpz_t p, g, y, x, k, M;
+
+    mpz_init(M);
     mpz_init(k);
     mpz_init(a);
     mpz_init(b);
@@ -94,10 +98,10 @@ pair<string, string> ELGcrypt(int M, string pS, string gS, string yS, string xS)
     mpz_set_str(g, gS.c_str(), 10);
     mpz_set_str(y, yS.c_str(), 10);
     mpz_set_str(x, xS.c_str(), 10);
+    mpz_set_str(M, numFromText(Ms).c_str(), 10);
     mpz_powm(a, g, k, p);
     mpz_powm(b, y, k, p);
-    // FIX: Incorrect calculation b
-    mpz_mul_ui(b, b, M);
+    mpz_mul(b, b, M);
     mpz_mod(b, b, p);
 
     string retA = mpz_get_str(NULL, 10, a);
@@ -105,7 +109,7 @@ pair<string, string> ELGcrypt(int M, string pS, string gS, string yS, string xS)
     return make_pair(retA, retB);
 }
 
-int ELGdecrypt(string bS, string aS, string xS, string pS) {
+string ELGdecrypt(string bS, string aS, string xS, string pS) {
     mpz_t b, a, x, p, deg, res;
     mpz_init(b);
     mpz_init(res);
@@ -123,7 +127,8 @@ int ELGdecrypt(string bS, string aS, string xS, string pS) {
     mpz_powm(res, a, deg, p);
     mpz_mul(res, res, b);
     mpz_mod(res, res, p);
-    return mpz_get_ui(res);
+
+    return textFromNum(mpz_get_str(NULL, 10, res));
 }
 
 string generateK(string pS, string qS) {
@@ -149,10 +154,9 @@ string generateK(string pS, string qS) {
     return mpz_get_str(NULL, 10, res);
 }
 
-pair<string, string> ELGsubscribe(int Ms, pair<string, string> pS, string gS, string xS) {
+pair<string, string> ELGsubscribe(string Ms, pair<string, string> pS, string gS, string xS) {
     string kS = generateK(pS.first, pS.second);
     string rS = generateY(pS.first, gS, kS);
-
     mpz_t p, g, x, k, r, M, s;
     mpz_init(s);
     mpz_init(p);
@@ -167,7 +171,7 @@ pair<string, string> ELGsubscribe(int Ms, pair<string, string> pS, string gS, st
     mpz_set_str(x, xS.c_str(), 10);
     mpz_set_str(k, kS.c_str(), 10);
     mpz_set_str(r, rS.c_str(), 10);
-    mpz_set_ui(M, Ms);
+    mpz_set_str(M, md5(numFromText(Ms)).c_str(), 10);
 
 
     mpz_sub_ui(p, p, 1);
@@ -185,7 +189,7 @@ pair<string, string> ELGsubscribe(int Ms, pair<string, string> pS, string gS, st
     return make_pair(ret1, ret2);
 }
 
-bool ELGcheck(int Ms, string pS, string gS, string yS, string rS, string sS) {
+bool ELGcheck(string Ms, string pS, string gS, string yS, string rS, string sS) {
     mpz_t M, p, g, y, r, s;
     mpz_init(M);
     mpz_init(p);
@@ -194,7 +198,7 @@ bool ELGcheck(int Ms, string pS, string gS, string yS, string rS, string sS) {
     mpz_init(r);
     mpz_init(s);
 
-    mpz_set_ui(M, Ms);
+    mpz_set_str(M, md5(numFromText(Ms)).c_str(), 10);
     mpz_set_str(p, pS.c_str(), 10);
     mpz_set_str(g, gS.c_str(), 10);
     mpz_set_str(y, yS.c_str(), 10);

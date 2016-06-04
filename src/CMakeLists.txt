@@ -14,14 +14,14 @@ set(HEADER_FILES
         BigNumber/Functions.h
         BigNumber/BBS.h
         BigNumber/Gost.h
-        BigNumber/elg.h)
+        BigNumber/elg.h BigNumber/md5.h)
 
 set(SOURCE_FILES
         BigNumber/BigNumber.cpp
         BigNumber/Functions.cpp
         BigNumber/BBS.cpp
         BigNumber/Gost.cpp
-        BigNumber/elg.cpp)
+        BigNumber/elg.cpp BigNumber/md5.cpp)
 
 add_library(src STATIC ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(src ${GMP_LIBRARIES})

@@ -8,8 +8,8 @@
 using namespace std;
 
 TEST(ELGTest, ENCRYPT_DECRYPT) {
-    int M = 2400;
-    int D;
+    string M = "Hello crypto world";
+    string D;
     pair<string, string> p = generateP();
 
     string x = generateX(p.first);
@@ -18,15 +18,15 @@ TEST(ELGTest, ENCRYPT_DECRYPT) {
 
     pair<string, string> C = ELGcrypt(M, p.first, g, y, x);
     D = ELGdecrypt(C.second, C.first, x, p.first);
-
+    cout << M << endl;
+    cout << D << endl;
     EXPECT_EQ(M, D);
 }
 
 
 
 TEST(ELGTest, SUBSCRIBE_CHECK) {
-    int M = 2400;
-    int D;
+    string M = "Hello crypto world";
     pair<string, string> p = generateP();
 
     string x = generateX(p.first);
