@@ -6,7 +6,8 @@ add_executable(BigNumberTests
         Gost.spec.cpp
         BBS.spec.cpp
         elg.spec.cpp
-        md5.spec.cpp)
+        md5.spec.cpp
+        PKCS.spec.cpp)
 
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 find_package(GMP REQUIRED)
