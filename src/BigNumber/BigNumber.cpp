@@ -9,6 +9,7 @@ BigNumber::BigNumber(string numString) {
 
 BigNumber::BigNumber() {
     this->num.push_back(0);
+    this->sign = 1;
 }
 
 BigNumber::BigNumber(int number) {
@@ -30,7 +31,7 @@ string BigNumber::print() {
         res += tmp;
     }
 
-    return (this->sign == -1) ? minus + tmp + res : tmp + res;
+    return (this->sign == -1 && tmp + res != "0") ? minus + tmp + res : tmp + res;
 }
 
 void BigNumber::setNum(string numString) {
